@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.freeze {
+  overflow: hidden;
+}
+
+.hamburger-line {
+  @apply block w-[25px] h-[4px] bg-slate-500 rounded-md;
+}
+
+.hamburger-active.hamburger-line:nth-child(1) {
+  @apply rotate-45;
+}
+.hamburger-active.hamburger-line:nth-child(2) {
+  @apply opacity-0;
+}
+
+.hamburger-active.hamburger-line:nth-child(3) {
+  @apply -rotate-45;
+}
+
+/* responsive-mobile */
+
+.nav-fixed {
+  @apply transition-all duration-150 ease-out !right-0;
+}
+
+.middle {
+  @apply container lg:px-12 md:px-10 pb-24 px-24 mx-auto sm:!px-4 pt-32 md:pt-24;
+}
+
