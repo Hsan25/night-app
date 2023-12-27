@@ -5,19 +5,20 @@ import { useNavigate } from "react-router-dom";
 const InputSearch = ({ showSearch }) => {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("");
-
   const navigate = useNavigate();
-  useEffect(() => {
-    setType(location.pathname.split("/")[1]);
-  }, []);
+  const inputRef = useRef();
 
   const symbol = `!#$%&^*()@?/|[]~;{}<>""`;
   useEffect(() => {
+    showSearch ? inputRef.current.focus() : "";
+
+    // set type 
+    setType(location.pathname.split("/")[1]);
     // filter query
     if (symbol.split("").includes(query.split("")[query.length - 1])) {
       filter(query);
     }
-  }, [query]);
+  }, [query, showSearch]);
 
   function keyUp(e) {
     if (e.key == "Enter") {
@@ -35,6 +36,7 @@ const InputSearch = ({ showSearch }) => {
     e.preventDefault();
     if (!query) return;
     const slug = query.split(" ").join("-");
+    setQuery("");
     navigate(`/${type}/search/${slug}`);
   }
 
@@ -43,10 +45,12 @@ const InputSearch = ({ showSearch }) => {
       {type ? (
         <div className="flex items-center bg-slate-900 gap-2 px-4 py-2 rounded-md">
           <input
+            ref={inputRef}
             type="text"
-            placeholder={
-              type == "anime" ? "search anime..." : "search manga..."
-            }
+            placeholder={`search ${
+              type == "quotes" ? type + " by keyword" : type
+            }... 
+            `}
             autoFocus
             onKeyPress={(e) => keyUp(e)}
             value={query}
@@ -58,7 +62,7 @@ const InputSearch = ({ showSearch }) => {
           </Link>
         </div>
       ) : (
-        ""
+        <></>
       )}
     </>
   );

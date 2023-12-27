@@ -26,6 +26,9 @@ const SearchResult = () => {
 
   return (
     <MainLayout>
+      <h1 className="text-xl md:text-3xl font-medium">
+        Search result {query.split("-").join(" ")}{" "}
+      </h1>
       {data.length ? (
         <CardList data={data} type={type} />
       ) : (

@@ -1,6 +1,7 @@
 import axios from "axios";
 const url = import.meta.env.VITE_REACT_APP_BASEURL;
 
+const quotesUrl = import.meta.env.VITE_REACT_APP_QUOTES_URL;
 export const getPopularAnime = async () => {
   const req = await axios.get(`${url}/top/anime`);
   const data = await req.data;
@@ -49,7 +50,35 @@ export const getMangaById = async (id) => {
 };
 
 export const getSearchManga = async (q) => {
-  const req = await axios.get(`${url}/manga?q=${q}&sfw=true`);
-  const data = await req.data;
-  return data;
+  try {
+    const req = await axios.get(`${url}/manga?q=${q}&sfw=true`);
+    const data = await req.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// quotes
+
+// get random quotes
+
+export const getRandomQuotes = async () => {
+  try {
+    const res = await axios.get(`${quotesUrl}/getrandom`);
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getQuotesByKeyWord = async (keyword) => {
+  try {
+    const res = await axios.get(`${quotesUrl}/carikata?kata=${keyword}&page=1`);
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };

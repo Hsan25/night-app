@@ -1,11 +1,10 @@
-const Hamburger = ({isActive, handleActive }) => {
-
+const Hamburger = ({ isActive, handleActive }) => {
   return (
     <>
       <div
         id="hamburger"
         onClick={() => handleActive()}
-        className="w-[25px] md:flex hidden h-[26px] cursor-pointer flex-col gap-1">
+        className="w-[25px] flex md:hidden h-[26px] cursor-pointer flex-col gap-1">
         <span
           className={
             isActive
@@ -26,6 +25,5 @@ const Hamburger = ({isActive, handleActive }) => {
     </>
   );
 };
-
 
 export default Hamburger;

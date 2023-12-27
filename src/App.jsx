@@ -8,6 +8,7 @@ import MangaDetailPage from "./pages/MangaDetailPage";
 import AnimePage from "./pages/AnimePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignupPage";
+import QuotesPage from "./pages/QuotesPage";
 const router = createBrowserRouter([
   { path: "/", Component: HomePage },
   { path: "/anime", Component: AnimePage },
@@ -18,6 +19,8 @@ const router = createBrowserRouter([
   { path: "/manga/detail/:id", Component: MangaDetailPage },
   { path: "/signin", Component: SignInPage },
   { path: "/signup", Component: SignUpPage },
+  { path: "/quotes", Component: QuotesPage },
+  { path: "/quotes/search/:keyword", Component: QuotesPage },
   { path: "*", Component: NotFound },
 ]);
 

@@ -26,12 +26,12 @@ const Container = ({ type = "anime" }) => {
 
   return (
     <>
-      <main className="md:flex-col min-h-[100vh] flex gap-6 justify-between">
+      <main className="flex-col md:flex-row pt-12 min-h-[100vh] flex gap-6 justify-between">
         {isLoading ? <Loading /> : ""}
         {data.mal_id && !isLoading ? (
           <>
-            <div className="left self-start md:w-full w-96 flex flex-col items-center justify-center gap-5">
-              <div className="hidden md:block text-center">
+            <div className="left md:self-start flex flex-col items-center justify-center gap-5">
+              <div className="md:hidden block text-center">
                 <TitleCard title={data.title} />
               </div>
               <div className="max-w-[250px] w-full rounded-lg overflow-hidden">
@@ -81,12 +81,12 @@ const Container = ({ type = "anime" }) => {
                 </div>
               </div>
             </div>
-            <div className="right w-full md:pl-0 pl-14">
-              <div className="md:hidden">
+            <div className="right w-full  md:pl-14">
+              <div className="hidden md:block">
                 <TitleCard title={data.title} />
               </div>
-              <div className="flex justify-center gap-5 sm:gap-3 pt-6">
-                <div className="flex sm:!px-4  sm:py-3 gap-1 items-center bg-blue-500 rounded-full px-8 py-4 cursor-pointer hover:bg-blue-600">
+              <div className="flex justify-center gap-5 pt-6">
+                <div className="flex gap-1 items-center bg-blue-500 rounded-full px-6 md:px-8 py-4 cursor-pointer hover:bg-blue-600">
                   <span>
                     <Icon.Play width={20} />
                   </span>
@@ -94,7 +94,7 @@ const Container = ({ type = "anime" }) => {
                     {type == "anime" ? "Watch" : "Mulai membaca"}
                   </span>
                 </div>
-                <div className="flex sm:px-3 sm:py-3 items-start gap-2 bg-slate-600 rounded-full px-8 py-4 cursor-pointer hover:bg-slate-700">
+                <div className="flex  items-start gap-2 bg-slate-600 rounded-full px-6 md:px-8 py-4 cursor-pointer hover:bg-slate-700">
                   <span>
                     <Icon.DownloadCloud width={20} />
                   </span>
@@ -105,7 +105,7 @@ const Container = ({ type = "anime" }) => {
               <div className="flex gap-2 pt-6">
                 <div>
                   <div className="text-xl mb-3 uppercase">Synopsis</div>
-                  <div className="text-sm text-slate-300  min-h[10rem] h-auto overflow-hidden text-ellipsis">
+                  <div className="text-base text-justify text-slate-300  min-h[10rem] h-auto overflow-hidden text-ellipsis">
                     {data.synopsis}
                   </div>
                 </div>

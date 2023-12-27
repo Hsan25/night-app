@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import useLogin from "../hooks/useLogin";
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, style }) => {
   const location = useLocation();
   const page = location.pathname.split("/")[1];
   const username = useLogin();
@@ -17,7 +17,7 @@ const MainLayout = ({ children }) => {
 
       <Navbar />
 
-      <div className="middle min-h-screen">{children}</div>
+      <div className={`${style || ""} middle min-h-screen`}>{children}</div>
       <Footer />
     </>
   );

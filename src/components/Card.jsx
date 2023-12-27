@@ -42,7 +42,7 @@ const Card = ({ resultSearch, type }) => {
                 }
                 className="group  rounded-md "
                 key={item.mal_id}>
-                <div className="w-full overflow-hidden rounded-md bg-slate-700 max-h-[20rem] sm:aspect-auto md:!h-[16rem] h-[20rem]">
+                <div className="w-full overflow-hidden rounded-md bg-slate-700 max-h-[20rem] h-[20rem]">
                   <img
                     src={item.images.jpg.large_image_url}
                     className="object-cover h-full rounded-md w-full block text-center group-hover:scale-105"

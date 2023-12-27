@@ -35,12 +35,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 inset-x-0 bg-gradient-to-br z-40 from-slate-700 to-slate-800 flex justify-between items-center py-4 px-14 sm:px-5 ">
+    <nav className="fixed top-0  inset-x-0 bg-gradient-to-br z-40 from-slate-700 to-slate-800 flex justify-between items-center p-5  md:px-10 lg:px-14 ">
       <div
         onClick={() => {
           navigate("/");
         }}
-        className="logo cursor-pointer font-medium text-white text-3xl sm:text-2xl">
+        className="logo cursor-pointer font-medium text-white text-2xl ">
         <span>Night</span>
       </div>
 
@@ -48,37 +48,35 @@ const Navbar = () => {
         id="navbar"
         className={
           isActive
-            ? "nav-fixed flex md:justify-normal md:pt-10 md:bg-slate-800 md:-right-96 md:h-screen md:-bottom-[100vh] md:absolute md:flex-col items-center justify-between sm:!w-[60%] md:w-[40%] w-[80%]"
-            : "transition-all duration-150 ease-out flex md:justify-normal md:pt-10 md:bg-slate-800 md:-right-96 md:h-screen md:-bottom-[100vh] md:absolute md:flex-col items-center justify-between sm:!w-[60%] md:w-[40%] w-[80%]"
+            ? "nav-fixed flex tems-center justify-between"
+            : "transition-all duration-150 pl-20 w-full ease-out flex items-center justify-between"
         }>
-        <ul className="flex md:flex-col duration-1000 transition  gap-4">
+        <ul
+          className={`flex ${
+            isActive ? "right-0" : "-right-full"
+          } items-center pt-12 ml-auto md:w-full  duration-300 md:static md:flex-row md:h-full md:pt-0 md:bg-transparent transition-all flex-col w-[70%] sm:w-[40%] bg-slate-800 h-screen absolute top-full gap-4`}>
           <li>
-            <NavLink
-              to={"/"}
-              aria-current={"page"}
-              className="text-slate-300 text-xl hover:border-b-2 border-sky-500">
+            <NavLink to={"/"} className="nav-list">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={"/anime"}
-              className="text-slate-300 text-xl hover:border-b-2 border-sky-500">
+            <NavLink to={"/anime"} className="nav-list ">
               Anime
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={"/manga"}
-              className="text-slate-300 text-xl hover:border-b-2 border-sky-500">
+            <NavLink to={"/manga"} className="nav-list ">
               Manga
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/quotes"} className="nav-list ">
+              Quotes
             </NavLink>
           </li>
         </ul>
         <div className="flex gap-x-5 md:pt-10 items-center">
-          <div className="md:hidden">
-            <InputSearch showSearch={showSearch} />
-          </div>
           {/* <div className="flex gap-4 items-center">
             <NavLink
               to={"/signin"}
@@ -94,21 +92,19 @@ const Navbar = () => {
         </div>
       </div>
 
-      {type ? (
+      {type && (
         <div
           onClick={() => setShowSearch(!showSearch)}
-          className="ml-auto mr-6 cursor-pointer p-[2px] px-[6px] hidden md:block bg-slate-600 rounded-full">
+          className="ml-auto mr-6 md:hidden cursor-pointer p-[2px] px-[6px] bg-slate-600 rounded-full">
           <Search width={18} />
         </div>
-      ) : (
-        ""
       )}
 
       <div
         className={`${
           showSearch
-            ? "absolute  mx-auto left-1/2 -translate-x-1/2 -bottom-[100%] md:flex hidden"
-            : "hidden"
+            ? "absolute md:static mx-auto md:mx-0 left-1/2 -translate-x-1/2 md:-translate-x-0 -bottom-[100%]"
+            : "hidden md:block"
         } `}>
         <InputSearch showSearch={showSearch} />
       </div>
