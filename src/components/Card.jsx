@@ -7,13 +7,11 @@ const Card = ({ resultSearch, type }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  // let type = '';
   useEffect(() => {
-    // type = location.pathname.split('/')[1];
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 400);
     if (!resultSearch) {
       type == "anime"
         ? getPopularAnime().then((res) => {

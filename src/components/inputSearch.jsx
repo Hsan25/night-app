@@ -11,7 +11,6 @@ const InputSearch = ({ showSearch }) => {
   const symbol = `!#$%&^*()@?/|[]~;{}<>""`;
   useEffect(() => {
     showSearch ? inputRef.current.focus() : "";
-
     // set type 
     setType(location.pathname.split("/")[1]);
     // filter query

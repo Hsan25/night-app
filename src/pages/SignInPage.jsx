@@ -5,17 +5,22 @@ import { Helmet } from "react-helmet";
 const SignInPage = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
   const navigate = useNavigate();
 
   function signInCheck(e) {
     e.preventDefault();
-    if (userName.trim() == "night" && password == "12345") {
-      localStorage.setItem("username", userName);
-      navigate("/");
-      setError(false);
+    if (userName == "" || password == "") {
+      setErrorMessage("masukkan email dan password");
     } else {
-      setError(true);
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (userName == user.username && password == user.password) {
+        navigate("/");
+      } else {
+        setErrorMessage("password atau email salah");
+        return;
+      }
+      setErrorMessage("");
     }
   }
   return (
@@ -32,9 +37,7 @@ const SignInPage = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            {error && (
-              <p className="text-red-600">username atau password salah</p>
-            )}
+            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
             <form className="space-y-6" onSubmit={signInCheck}>
               <div>
                 <label

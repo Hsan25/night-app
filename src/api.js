@@ -2,8 +2,10 @@ import axios from "axios";
 const url = import.meta.env.VITE_REACT_APP_BASEURL;
 
 const quotesUrl = import.meta.env.VITE_REACT_APP_QUOTES_URL;
-export const getPopularAnime = async () => {
-  const req = await axios.get(`${url}/top/anime`);
+export const getPopularAnime = async (limit = 0) => {
+  const req = await axios.get(
+    `${url}/top/anime${limit ? `?limit=${limit}` : ""}`
+  );
   const data = await req.data;
   return data;
 };
@@ -21,7 +23,7 @@ export const getSearchAnime = async (q) => {
 };
 
 // anime rekomendasi
-export const getRecomendationsAnime = async () => {
+export const getRecomendationsAnime = async (limit) => {
   const req = await axios.get(`${url}/recomendations/anime`);
   const data = await req.data;
   return data;
@@ -29,8 +31,10 @@ export const getRecomendationsAnime = async () => {
 
 // manga
 
-export const getPopularManga = async () => {
-  const req = await axios.get(`${url}/top/manga`);
+export const getPopularManga = async (limit) => {
+  const req = await axios.get(
+    `${url}/top/manga?sfw=false${limit ? `&limit=${limit}` : ""}`
+  );
   const data = await req.data;
   return data;
 };

@@ -4,23 +4,26 @@ import { useState, useEffect } from "react";
 import useLogin from "../hooks/useLogin";
 import { getRandomQuotes, getQuotesByKeyWord } from "../api";
 import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const QuotesPage = () => {
   useLogin();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const location = useLocation();
-
-  let keyword = location.pathname.split("/")[3];
+  const { keyword } = useParams();
   useEffect(() => {
     if (keyword) {
-      getQuotesByKeyWord(keyword).then((res) => setData(res.result));
+      
+      getQuotesByKeyWord(keyword).then((res) => {
+        setData(res.result);
+      });
+      return;
     }
     getRandomQuotes().then((res) => {
       setData(res.result);
     });
-    // console.log(keyword)
   }, [keyword]);
 
+  useEffect(() => {}, [keyword]);
   setTimeout(() => {
     setIsLoading(false);
   }, 500);
@@ -41,22 +44,23 @@ const QuotesPage = () => {
               </h1>
             </>
           )}
-          {data.length &&
-            data.map((item, idx) => {
-              return (
-                <div className="list-quotes py-12 mx-auto" key={idx}>
-                  <p className="text-justify w-full mx-auto text-lg md:text-xl font-medium">
-                    &rdquo;{item.indo}&rdquo;
-                  </p>
-                  <div className="by text-xl text-slate-500 italic text-center">
-                    {"~"} {item.character}
+          {data.length
+            ? data.map((item, idx) => {
+                return (
+                  <div className="list-quotes py-12 mx-auto" key={idx}>
+                    <p className="text-justify w-full mx-auto text-lg md:text-xl font-medium">
+                      &rdquo;{item.indo}&rdquo;
+                    </p>
+                    <div className="by mt-5 text-xl text-slate-500 italic text-center">
+                      {"~"} {item.character}
+                    </div>
+                    <div className="by text-xl text-slate-500 italic text-center">
+                      anime: {item.anime}
+                    </div>
                   </div>
-                  <div className="by text-xl text-slate-500 italic text-center">
-                    anime: {item.anime}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            : null}
         </MainLayout>
       )}
     </>
